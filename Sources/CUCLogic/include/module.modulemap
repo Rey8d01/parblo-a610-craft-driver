@@ -1,0 +1,4 @@
+module CUCLogic {
+    header "uclogic.h"
+    export *
+}

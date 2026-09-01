@@ -1,0 +1,191 @@
+Parblo A610 driver for macOS
+============================
+
+Written by Claude Opus 5 (claude-opus-5) running as Claude Code, Anthropic's
+command-line agent, in August and September 2026 — the code, the scripts and
+the documents alike. The owner of the tablet set the direction and ran every
+measurement on the hardware. Source and full documentation are in the
+repository this archive was built from.
+
+Nothing here needs to be compiled. Xcode and developer tools are not required.
+
+You need a Mac on Apple Silicon with macOS 13 or newer, and the tablet plugged in.
+
+
+INSTALL
+-------
+
+1.  Unpack the archive: double-click it in Finder. A folder appears next to it.
+
+2.  Open Terminal: press Command+Space, type  Terminal , press Enter.
+
+3.  In the Terminal window type  cd  followed by one space, then drag the
+    unpacked folder from Finder into the window — the path is inserted for you.
+    Press Enter.
+
+4.  Type  ./install.sh  and press Enter.
+
+5.  The installer says the files came from a download and asks whether to clear
+    the quarantine flag. This build is not notarized by Apple, so macOS would
+    refuse to run it otherwise. Type  y  and press Enter.
+
+6.  The installer prints two permissions that have to be granted by hand.
+    Open System Settings -> Privacy & Security, and in each of the two sections
+    add the driver:
+
+        Input Monitoring
+        Accessibility
+
+    Press the  +  button. A file picker opens. The driver lives in a folder
+    Finder keeps hidden, so paste the path: press Command+Shift+G, paste the
+    line below, press Enter, then Open.
+
+        ~/Library/Application Support/parblo-a610-craft-driver/bin
+
+    Pick the file  parblo-a610-craft-driver  and make sure the switch next to it
+    is on. Do this in BOTH sections. Without the second one the tablet goes
+    completely dead — the driver has taken it from the system and cannot send
+    anything back.
+
+7.  Back in Terminal, run the line the installer printed at the end, which looks
+    like this:
+
+        launchctl kickstart -k gui/501/com.rey.parblo-a610-craft-driver
+
+    The tablet starts working. Nothing needs to be launched at login: the driver
+    starts by itself from now on.
+
+
+SETTINGS
+--------
+
+    ~/Applications/Parblo A610.app
+
+Open it once and its icon stays in the menu bar at the top of the screen. There
+you set the display, the working area of the tablet, the pen buttons and the
+pressure curve. It needs no permissions of its own.
+
+
+IF SOMETHING IS WRONG
+---------------------
+
+The driver writes down what happened. Open Terminal and run:
+
+    open ~/Library/Application\ Support/parblo-a610-craft-driver/
+
+The file  parblo-a610-craft-driver.log  is the log. The last lines say whether
+the tablet was found and whether the permissions were granted.
+
+
+REMOVE
+------
+
+In the unpacked folder, in Terminal:
+
+    ./install.sh uninstall
+
+The settings and the log stay, so installing again picks them up. To delete
+those as well:
+
+    ./install.sh uninstall --purge
+
+Two things no script can clean up. In System Settings -> Privacy & Security the
+two sections keep a row pointing at the deleted file — remove it with the  -
+button. And the certificate the build was signed with is not installed on your
+machine at all, so there is nothing to clean there.
+
+
+================================================================================
+
+
+Драйвер Parblo A610 для macOS
+=============================
+
+Написан Claude Opus 5 (claude-opus-5) в режиме Claude Code — консольного агента
+Anthropic — в августе и сентябре 2026 года: и код, и скрипты, и документы.
+Владелец планшета задавал направление и проводил все замеры на железе.
+Исходники и полная документация — в репозитории, из которого собран этот архив.
+
+Компилировать ничего не нужно. Xcode и инструменты разработчика не требуются.
+
+Нужен Mac на Apple Silicon с macOS 13 или новее и подключённый планшет.
+
+
+УСТАНОВКА
+---------
+
+1.  Распакуй архив: дважды щёлкни по нему в Finder. Рядом появится папка.
+
+2.  Открой Терминал: нажми Command+Пробел, набери  Terminal , нажми Enter.
+
+3.  В окне Терминала набери  cd  и один пробел, затем перетащи распакованную
+    папку из Finder в это окно — путь подставится сам. Нажми Enter.
+
+4.  Набери  ./install.sh  и нажми Enter.
+
+5.  Установщик скажет, что файлы скачаны, и спросит, снимать ли карантин.
+    Сборка не нотаризована в Apple, поэтому без этого macOS её не запустит.
+    Набери  y  и нажми Enter.
+
+6.  Установщик напечатает два разрешения, которые нужно выдать руками.
+    Открой Системные настройки -> Конфиденциальность и безопасность и добавь
+    драйвер в каждый из двух разделов:
+
+        Мониторинг ввода
+        Универсальный доступ
+
+    Нажми кнопку  +  — откроется выбор файла. Драйвер лежит в папке, которую
+    Finder прячет, поэтому вставь путь: нажми Command+Shift+G, вставь строку
+    ниже, нажми Enter, затем «Открыть».
+
+        ~/Library/Application Support/parblo-a610-craft-driver/bin
+
+    Выбери файл  parblo-a610-craft-driver  и проверь, что тумблер рядом с ним
+    включён. Сделай это в ОБОИХ разделах. Без второго планшет умрёт полностью:
+    драйвер заберёт его у системы и не сможет ничего отправить обратно.
+
+7.  Вернись в Терминал и выполни строку, которую установщик напечатал в конце.
+    Выглядит она так:
+
+        launchctl kickstart -k gui/501/com.rey.parblo-a610-craft-driver
+
+    Планшет заработает. Запускать ничего при входе в систему не надо: дальше
+    драйвер стартует сам.
+
+
+НАСТРОЙКИ
+---------
+
+    ~/Applications/Parblo A610.app
+
+Открой один раз, и значок останется в строке меню вверху экрана. Там задаются
+экран, рабочая область планшета, кнопки пера и кривая нажима. Своих разрешений
+приложению не нужно.
+
+
+ЕСЛИ ЧТО-ТО НЕ ТАК
+------------------
+
+Драйвер записывает, что произошло. Открой Терминал и выполни:
+
+    open ~/Library/Application\ Support/parblo-a610-craft-driver/
+
+Файл  parblo-a610-craft-driver.log  — это лог. Последние строки говорят, нашёлся
+ли планшет и выданы ли разрешения.
+
+
+УДАЛЕНИЕ
+--------
+
+В распакованной папке, в Терминале:
+
+    ./install.sh uninstall
+
+Настройки и лог останутся, повторная установка их подхватит. Чтобы снести и их:
+
+    ./install.sh uninstall --purge
+
+Две вещи скриптом не убираются. В Системных настройках в обоих разделах
+останется строка, указывающая на удалённый файл, — убери её кнопкой  - .
+А сертификат, которым подписана сборка, на твою машину и не ставился, так что
+там чистить нечего.

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>__LABEL__</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>__BINARY__</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- Restart only after a crash. The driver exits by itself in exactly one
+         case: when the permissions are not granted. A plain KeepAlive would turn
+         that into an endless restart loop every 10 seconds, writing into a log
+         that nobody rotates. -->
+    <key>KeepAlive</key>
+    <dict>
+        <key>Crashed</key>
+        <true/>
+    </dict>
+
+    <!-- An input driver: without Interactive, launchd throttles it as a background job. -->
+    <key>ProcessType</key>
+    <string>Interactive</string>
+
+    <!-- The driver writes and rotates the main log itself. Whoever writes a file
+         has to keep its size in check, and launchd does not do that. Only output
+         that goes around the logger lands here, which means crash messages. In
+         normal work this file stays empty. -->
+    <key>StandardOutPath</key>
+    <string>__CRASHLOG__</string>
+    <key>StandardErrorPath</key>
+    <string>__CRASHLOG__</string>
+</dict>
+</plist>
