@@ -30,6 +30,7 @@ playground.xcworkspace
 # .swiftpm
 
 .build/
+*.o
 
 # CocoaPods
 #
@@ -60,3 +61,25 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Release archives made by tools/build.sh package
+dist/
+
+# Built diagnostic tools (the sources are in the repository, the binaries are not)
+tools/hidwatch
+tools/ucinit
+tools/seizetest
+tools/flagscan
+tools/eventwatch
+tools/keyscan
+tools/clickwatch
+
+# macOS
+.DS_Store
+
+# Local agent settings
+.claude/settings.local.json
+
+# Working plan: kept locally, its reusable half lives in FINDINGS.md
+PLAN.md
+docs/
