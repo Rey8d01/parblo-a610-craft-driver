@@ -21,6 +21,10 @@ The measurements everything rests on are collected separately in
 nothing to do with this model and are useful to anyone writing a tablet driver
 or fighting TCC on macOS.
 
+> Active development is not planned for the project,
+> as it was designed to solve a specific problem - getting a tablet to work without support on a new Mac. 
+> But the repository will be useful for other similar studies.
+
 ## Caveats
 
 The scope is narrow, and it is better to know that before installing.
